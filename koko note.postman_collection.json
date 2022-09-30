@@ -1,0 +1,672 @@
+{
+	"info": {
+		"_postman_id": "1606918b-6d6a-4419-976d-a1e335e3f0ea",
+		"name": "koko note",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "17333313"
+	},
+	"item": [
+		{
+			"name": "sign Up",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userName\" : \"\",\r\n    \"email\": \"\",\r\n    \"password\" : \"\",\r\n    \"confirmPassword\":\"\"\r\n    \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8888/signUp",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"signUp"
+					]
+				},
+				"description": "send the body of the request as follows and i will send verification mail to him to be verfiverified"
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"\",\r\n    \"password\": \"\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8888/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"login"
+					]
+				},
+				"description": "send the body of request and i will check if he has an email and if he has an email i will check for his password too , then i will send you the encrypted token"
+			},
+			"response": []
+		},
+		{
+			"name": "add Note",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5hZGFAZ21haWwuY29tIiwiaWF0IjoxNjY0NDY1NDU1fQ.BPQLU22RLvC2OeJY-1JOIb8qHZc06fV4shys8A55pzo",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"noteAbstract\" : \"\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8888/resetPassword",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"resetPassword"
+					]
+				},
+				"description": "you will send my the request as follows (body and token) and if data is good and the request was efficient i will send you \"success\" message"
+			},
+			"response": []
+		},
+		{
+			"name": "move Note To Trash",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"noteId\" : \"\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8888/moveNoteToTrash",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"moveNoteToTrash"
+					]
+				},
+				"description": "you will send me the body of the request as follows and if the request was efficient and the process run efficiently i will response the the \" success \" message"
+			},
+			"response": []
+		},
+		{
+			"name": "add Task",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\" : \"\",\r\n    \"content\" : \"\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8888/addTask",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"addTask"
+					]
+				},
+				"description": "you will send me the encrypted token which you caught from the headers also you will send me the noteData in the body of the request so the request will be as follows :"
+			},
+			"response": []
+		},
+		{
+			"name": "mark As Pinned",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"taskId\" : \"\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8888/markAsPinned",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"markAsPinned"
+					]
+				},
+				"description": "you will send me the body of the request as follows :"
+			},
+			"response": []
+		},
+		{
+			"name": "mark As Done",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"taskId\" : \"\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8888/markAsDone",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"markAsDone"
+					]
+				},
+				"description": "you will send me the body of the request as follows :"
+			},
+			"response": []
+		},
+		{
+			"name": "get All Notes",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5hZGFAZ21haWwuY29tIiwiaWF0IjoxNjY0NDY1NDU1fQ.BPQLU22RLvC2OeJY-1JOIb8qHZc06fV4shys8A55pzo",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8888/getAllNotes",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"getAllNotes"
+					]
+				},
+				"description": "you will send me the encrypted token which you caught from the headers also you will send me the number of pages and size you want me to send for the paggenation in the query request so the request will be as follows :\n\n[http://localhost:8888/getAllNotes?page=x&size=y](http://localhost:8888/getAllNotes/page=x&size=y)"
+			},
+			"response": []
+		},
+		{
+			"name": "forget Password",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5hZGFAZ21haWwuY29tIiwiaWF0IjoxNjY0NDY1NDU1fQ.BPQLU22RLvC2OeJY-1JOIb8qHZc06fV4shys8A55pzo",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userMail\" : \"\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8888/forgetPassword",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"forgetPassword"
+					]
+				},
+				"description": "you will send me user mail in the body of request as follows also you will send me the encrypted token which you caught from the headers , then i will send him an email to reset his password which redirect him to the\n\n\" /resestPassword \"endpoint"
+			},
+			"response": []
+		},
+		{
+			"name": "verfiy Email",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8888/verfiyEmail",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"verfiyEmail"
+					]
+				},
+				"description": "you will access this endpoint and send the token in request.query as follows :\n\nStartFragment\n\n[http://localhost:8888/verfiyEmail/token](http://localhost:8888/verfiyEmail/token)\n\nEndFragment"
+			},
+			"response": []
+		},
+		{
+			"name": "get All Notes In Trash",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5hZGFAZ21haWwuY29tIiwiaWF0IjoxNjY0NDY1NDU1fQ.BPQLU22RLvC2OeJY-1JOIb8qHZc06fV4shys8A55pzo",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8888/getAllNotesInTrash",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"getAllNotesInTrash"
+					]
+				},
+				"description": "you will send me the encrypted token which you caught from the headers also you will send me the number of page and size you want me to send for the paggenation in the query request so the request will be as follows :\n\n[http://localhost:8888/getAllNotesInTrash?page=x&size=y](http://localhost:8888/getAllNotesInTrash?page=x&size=y)"
+			},
+			"response": []
+		},
+		{
+			"name": "get All Tasks",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8888/getAllTasks",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"getAllTasks"
+					]
+				},
+				"description": "StartFragment\n\nyou will send me the encrypted token which you caught from the headers also you will send me the number of pages and size you want me to send for the paggenation in the query request so the request will be as follows :\n\n[http://localhost:8888/getAllTasks?page=x&size=y](http://localhost:8888/getAllTasks?page=x&size=y)"
+			},
+			"response": []
+		},
+		{
+			"name": "get AlL Done Tasks",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8888/getAlLDoneTasks",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"getAlLDoneTasks"
+					]
+				},
+				"description": "StartFragment\n\nyou will send me the encrypted token which you caught from the headers also you will send me the number of pages and size you want me to send for the paggenation in the query request so the request will be as follows :\n\n[http://localhost:8888/getAlLDoneTasks?page=x&size=y](http://localhost:8888/getAlLDoneTasks?page=x&size=y)"
+			},
+			"response": []
+		},
+		{
+			"name": "reset Password",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5hZGFAZ21haWwuY29tIiwiaWF0IjoxNjY0NDY1NDU1fQ.BPQLU22RLvC2OeJY-1JOIb8qHZc06fV4shys8A55pzo",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"password\" : \"\",\r\n    \"confirmPassword\" : \"\" \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8888/resetPassword",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"resetPassword"
+					]
+				},
+				"description": "the user will be allowed to enter a new password and confirm with the confirm password and you will send me the 2 passwords and if they are the same it will be changed also you will need to send me the encrypted token which you caught from the headers , so your requests will be as follows :"
+			},
+			"response": []
+		},
+		{
+			"name": "edit Note",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"noteId\" : \"\",\r\n    \"noteAbstract\" : \"\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8888/editNote",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"editNote"
+					]
+				},
+				"description": "you will send me the body of request as follows and if the request was efficient i will response with the \"success\" message !"
+			},
+			"response": []
+		},
+		{
+			"name": "edit Task",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"taskId\": \"\",\r\n    \"title\" : \"\",\r\n    \"content\" : \"\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8888/editTask",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"editTask"
+					]
+				},
+				"description": "you will send me the body of request as follows :"
+			},
+			"response": []
+		},
+		{
+			"name": "remove All Trash",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8888/removeAllTrash",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"removeAllTrash"
+					]
+				},
+				"description": "you will send me the encrypted token which you caught from the headers , so the request will be as follows :"
+			},
+			"response": []
+		},
+		{
+			"name": "delete Task",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"taskId\" : \"\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8888/deleteTask",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"deleteTask"
+					]
+				},
+				"description": "you will send me the body of the request as follows :"
+			},
+			"response": []
+		},
+		{
+			"name": "delet All Tasks",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8888/deletAllTasks",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"deletAllTasks"
+					]
+				},
+				"description": "you will send me the encrypted token which you caught from the headers so the request will be as follows :"
+			},
+			"response": []
+		},
+		{
+			"name": "delete All Done Tasks",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8888/deleteAllDoneTasks",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"deleteAllDoneTasks"
+					]
+				},
+				"description": "you will send me the encrypted token which you caught from the headers , so the request will be as follows :"
+			},
+			"response": []
+		},
+		{
+			"name": "delete Single Done Task",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"taskId\" : \"\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8888/deleteSingleDoneTask",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"deleteSingleDoneTask"
+					]
+				},
+				"description": "you will send me the body of the request as follows :"
+			},
+			"response": []
+		}
+	]
+}
