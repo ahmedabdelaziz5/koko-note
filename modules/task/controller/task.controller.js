@@ -1,5 +1,7 @@
 const taskModel = require("../model/task.model");
 const doneTaskModel = require("../model/doneTask.model");
+const { rejects } = require("assert");
+
 
 const addTask = async(req,res)=>{
     try{
@@ -23,13 +25,16 @@ const addTask = async(req,res)=>{
 const markAsPinned = async(req,res)=>{
     try{
         const {taskId} = req.body ;
-        let task = await taskModel.findOne({taskId}).select("isPined");
-        let isPined  = task.isPined;
-        if(isPined) isPined = false ; 
-        else isPined = true ;
-        await taskModel.updateOne({taskId,isPined : isPined}).then(()=>{
+        let task = await taskModel.findOne({_id : taskId});
+        let mark ;
+        if(task.isPined) {task.isPined = false }
+        else {task.isPined = true ; }  
+        mark  = task.isPined ;     
+        await taskModel.updateOne({ taskId});
+        task.isPined = mark ;
+        await task.save().then(()=>{
             res.status(200).json({
-                msesage : "success"
+                message : "success"
             })
         });
     }
@@ -38,8 +43,7 @@ const markAsPinned = async(req,res)=>{
             msesage : "error",
             err
         })
-    }
- 
+    }     
 };
 
 const getAllTasks = async(req,res)=>{
@@ -101,8 +105,8 @@ const editTask = async(req,res)=>{
 
 const deleteTask = async(req,res)=>{
     try{
-        const taskId = req.body;
-        await taskModel.deleteOne({taskId}).then(()=>{
+        const {taskId} = req.body;
+        await taskModel.deleteOne({_id :taskId}).then(()=>{
         res.status(200).json({
             message : "success"
         })
@@ -137,7 +141,7 @@ const deletAllTasks = async(req,res)=>{
 const markAsDone = async (req,res)=>{
     try{
         let {taskId} =req.body ; 
-        await taskModel.findOneAndDelete( {_id :  taskId} ).then(async (docs)=>{
+        await taskModel.findOneAnd( {_id :  taskId} ).then(async (docs)=>{
             let tmp = new doneTaskModel({
                 title: docs.title,
                 content: docs.content,

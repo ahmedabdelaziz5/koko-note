@@ -24,7 +24,7 @@ const {
 }  = require("../joi/task.validation");
 
 app.post("/addTask",tokenHandling(),validator(addTaskValidation),addTask);
-app.post("/markAsPinned",validator(markAsPinnedValidation),markAsPinned);
+app.put("/markAsPinned",validator(markAsPinnedValidation),markAsPinned);
 app.get("/getAllTasks",tokenHandling(),getAllTasks);
 app.put("/editTask",validator(editTaskValidation),editTask);
 app.delete("/deleteTask",validator(deleteTaskValidaion),deleteTask);

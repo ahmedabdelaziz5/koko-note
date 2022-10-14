@@ -1,7 +1,7 @@
 const trashModel = require("../model/trash.model");
 const noteModel = require("../../note/model/note.model");
 const thirtyDaysInMs = 30 * 24 * 60 * 60 * 1000;
-
+    
 
 
 const moveNoteToTrash = async(req,res)=>{

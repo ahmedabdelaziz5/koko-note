@@ -1,0 +1,40 @@
+	user
+//signuP register
+//login
+//verfiy hotmail
+//forgetPassword 
+// reset password
+
+
+	note
+//addNote  ( noteAbstract , userId , uploadPhoto ) 
+// getAllNotes ( Paggintaion )
+//editNote 
+
+	task
+//addTask (title ,content)
+//markAsPinned
+//getAllTasks ( Paggintaion )
+//deleteTasks
+//editTask 
+//deletAllTasks
+//markAsDone
+//getAlLDoneTasks ( Paggintaion )
+//deleteAllDoneTasks
+//deleteSingleDoneTask
+  
+
+	trash
+//moveNoteToTrash
+//getAllNotesInTrash ( Paggintaion )
+removeAllTrash 
+removeAllTrashMonthly
+
+
+
+
+
+
+
+
+
