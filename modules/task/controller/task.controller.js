@@ -141,7 +141,7 @@ const deletAllTasks = async(req,res)=>{
 const markAsDone = async (req,res)=>{
     try{
         let {taskId} =req.body ; 
-        await taskModel.findOneAnd( {_id :  taskId} ).then(async (docs)=>{
+        await taskModel.findOneAndUpdate( {_id :  taskId} ).then(async (docs)=>{
             let tmp = new doneTaskModel({
                 title: docs.title,
                 content: docs.content,
