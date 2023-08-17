@@ -7,7 +7,7 @@ const connection = ()=>{
             useNewUrlParser:true ,
             useUnifiedTopology:true
         })
-        // .then(()=>{console.log("db configration done ...")})
+        .then(()=>{console.log("db configration done ...")})
 }
 
 module.exports = connection;
