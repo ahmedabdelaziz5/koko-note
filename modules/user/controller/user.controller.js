@@ -3,6 +3,7 @@ const bcrypt = require('bcrypt');
 const jwt = require("jsonwebtoken");
 const nodemailer = require("nodemailer");
 const saltRounds = 6;
+const {generatePasswod} = require("../../../helpers/generatePasswords");
 
 const login = async(req,res)=>{
 
@@ -135,31 +136,36 @@ const verfiyEmail = async(req,res)=>{
 const forgetPassword = async(req,res)=>{
     try{
         const {userMail}  = req.body;
-        let barerToken = req.headers.authorization;
-        let token = barerToken.split(" ")[1];
-        let isFound = userModel.find({userMail});
+        let isFound = await userModel.findOne({email : userMail}).lean();
         if(isFound){
+            let newPassword = generatePasswod();
+            
+            let hashedPassword = await bcrypt.hash(newPassword, saltRounds);
             let transporter = nodemailer.createTransport({
                 service : 'gmail',
                 auth: {
-                user:process.env.USER_NAME , 
-                pass: process.env.PASSWOARD, 
+                user:`${process.env.USER_NAME}` , 
+                pass: `${process.env.PASSWOARD}`, 
             },
           });
           let mailOptions  = {
-            from: '"koko note team" <ahmedabdelaziz6019@hotmail.com>', 
+            from: '"koko note team" <ahmedabdelaziz6019@gmail.com>', 
             to: `${userMail}`,
             subject: "forget passowrd access", 
-            text: "forget passowrd ",
-            html: `<b> <a href= 'http://localhost:8888/resetPassword?token=${token}' target= '_blank'>reset</b>`, 
+            text: `
+                your email is : "${isFound.email}"
+                your new password is : "${newPassword}"
+                `,
             };
             
-            transporter.sendMail(mailOptions, function(error, info){
+            transporter.sendMail(mailOptions, async function(error, info){
             if (error) {
             res.json({message : "success but couldnt send the reset password mail",error},)
             } 
             else {
-            res.json({message : "success and the reset password mail was sent"})
+                await userModel.updateOne({ email : isFound.email }, { password: hashedPassword }).then(()=>{
+                    res.json({message : "success and the reset password mail was sent"})
+                })
             }
             });
     }
@@ -169,7 +175,7 @@ const forgetPassword = async(req,res)=>{
             })
         }
     } 
-   catch(error){
+   catch(err){
     res.status(500).json({message : "error",err});
    }
 };

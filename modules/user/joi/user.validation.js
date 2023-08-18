@@ -44,7 +44,7 @@ module.exports  =  {
     forgetPasswordValidation : {
         body  : joi.object().required().keys({
             
-            email : joi.string().required().email().messages({
+            userMail  : joi.string().required().email().messages({
                 "string.empty" : "you must enter your e-mail ",
             }),
 
