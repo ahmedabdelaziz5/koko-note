@@ -3,9 +3,6 @@ const bcrypt = require('bcrypt');
 const jwt = require("jsonwebtoken");
 const nodemailer = require("nodemailer");
 const saltRounds = 6;
-var cron = require('node-cron');
-
-
 
 const login = async(req,res)=>{
 
@@ -74,7 +71,7 @@ const signUp = async(req,res)=>{
                 });
                 await newUser.save();
                 let transporter = nodemailer.createTransport({
-                        service : 'hotmail',
+                        service : 'gmail',
                         auth: {
                         user:process.env.USER_NAME , 
                         pass: process.env.PASSWOARD, 
@@ -143,7 +140,7 @@ const forgetPassword = async(req,res)=>{
         let isFound = userModel.find({userMail});
         if(isFound){
             let transporter = nodemailer.createTransport({
-                service : 'hotmail',
+                service : 'gmail',
                 auth: {
                 user:process.env.USER_NAME , 
                 pass: process.env.PASSWOARD, 

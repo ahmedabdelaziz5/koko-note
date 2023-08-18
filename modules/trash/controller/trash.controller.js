@@ -68,7 +68,7 @@ const getAllNotesInTrash = async(req,res)=>{
     }    
 };
 
-const   removeAllTrash = async(req,res)=>{
+const  removeAllTrash = async(req,res)=>{
 try{
     const userMail = req.user.email;
     await trashModel.deleteMany({userMail}).then(()=>{

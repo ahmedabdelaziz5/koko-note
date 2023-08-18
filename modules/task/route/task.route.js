@@ -1,4 +1,5 @@
 const app = require("express").Router();
+
 const {
     addTask,
     getAllTasks,
@@ -33,7 +34,5 @@ app.post("/markAsDone",validator(markAsDoneValidaion),markAsDone);
 app.get("/getAlLDoneTasks",tokenHandling(),getAlLDoneTasks);
 app.delete("/deleteAllDoneTasks",tokenHandling(),deleteAllDoneTasks);
 app.delete("/deleteSingleDoneTask",validator(deleteSingleDoneTaskValidation),deleteSingleDoneTask);
-
-
 
 module.exports = app ;
