@@ -64,19 +64,16 @@ const editNote = async (req, res) => {
     try {
         const { noteId, noteAbstract } = req.body;
         if (req.file) {
-            await noteModel.findOneAndUpdate({ noteId, noteAbstract: noteAbstract, imageUrl: req.file.path }).then(() => {
-                res.status(200).json({
-                    message: "success"
-                })
+            if (req.file) {
+                var url = "" ;
+                await cloudinary.v2.uploader.upload(req.file.path,{ public_id: `${req.file.originalname}` },function (error, result) { url = result.url ; }); 
+            }
+        }   
+        await noteModel.updateOne({ _id : noteId },{noteAbstract , imageUrl : url}).then(() => {
+            res.status(200).json({
+                message: "success"
             })
-        }
-        else {
-            await noteModel.findOneAndUpdate({ noteId, noteAbstract: noteAbstract }).then(() => {
-                res.status(200).json({
-                    message: "success"
-                })
-            })
-        }
+        })
 
     }
     catch (err) {

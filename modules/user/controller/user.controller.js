@@ -1,206 +1,200 @@
-const userModel  = require("../model/user.model");
+const userModel = require("../model/user.model");
 const bcrypt = require('bcrypt');
 const jwt = require("jsonwebtoken");
 const nodemailer = require("nodemailer");
 const saltRounds = 6;
-const {generatePasswod} = require("../../../helpers/generatePasswords");
+const { generatePasswod } = require("../../../helpers/generatePasswords");
 
-const login = async(req,res)=>{
+const login = async (req, res) => {
 
-    try{
-        const {email,password} = req.body;
-        let user = await userModel.findOne({email});
-    
-        if(!user)
-        {
+    try {
+        const { email, password } = req.body;
+        let user = await userModel.findOne({ email });
+
+        if (!user) {
             res.status(401).json({
-                message : "you should register first "
+                message: "you should register first "
             });
         }
 
-        else
-        {
-            const passwordMatch = await bcrypt.compare(password,user.password);
-            if(passwordMatch)
-            {
-                var token = jwt.sign({email : user.email},process.env.SECRET_TOKEN);
+        else {
+            const passwordMatch = await bcrypt.compare(password, user.password);
+            if (passwordMatch) {
+                var token = jwt.sign({ email: user.email }, process.env.SECRET_TOKEN);
                 res.status(200).json({
-                    message : "success",  
-                    token              
+                    message: "success",
+                    token
                 });
-                
+
             }
-            else 
-            {
+            else {
                 res.status(401).json({
-                    message : "incorrct password "
+                    message: "incorrct password "
                 });
             }
         }
     }
-    catch(err){
+    catch (err) {
         res.status(500),
-        res.send({
-            message : "error",
-            err
-        })
+            res.send({
+                message: "error",
+                err
+            })
     };
 };
 
-const signUp = async(req,res)=>{
-    try{
-        const {userName,email,password,confirmPassword} = req.body;
-        const user = await userModel.findOne({email});
-        if(user)
-        {
+const signUp = async (req, res) => {
+    try {
+        const { userName, email, password, confirmPassword } = req.body;
+        const user = await userModel.findOne({ email });
+        if (user) {
             res.status(400).json({
-                message : "this email already registerd"
+                message: "this email already registerd"
             })
         }
 
-        else
-        {
+        else {
             let sentMail = email;
-            if(password!=confirmPassword){
+            if (password != confirmPassword) {
                 res.send("password and confirm passowrd must be the same ")
             }
-            else{
+            else {
                 let newUser = new userModel({
-                    userName : `${userName}` ,
-                    email  : `${email}`,
+                    userName: `${userName}`,
+                    email: `${email}`,
                     password: `${password}`,
                 });
                 await newUser.save();
                 let transporter = nodemailer.createTransport({
-                        service : 'gmail',
-                        auth: {
-                        user:process.env.USER_NAME , 
-                        pass: process.env.PASSWOARD, 
+                    service: 'gmail',
+                    auth: {
+                        user: process.env.USER_NAME,
+                        pass: process.env.PASSWOARD,
                     },
-                  });
-                  
-                  let token = jwt.sign({email},process.env.SECRET_TOKEN);
-    
-                  let mailOptions  = {
-                    from: '"koko note team" <ahmedabdelaziz6019@hotmail.com>', 
-                    to: `${sentMail}`,
-                    subject: "email verification", 
-                    text: "e-mail verification !",
-                    html: `<b> <a href= 'http://localhost:8888/verfiyEmail?token=${token}' target= '_blank'>verify</b>`, 
-                  };
-            
-                transporter.sendMail(mailOptions, function(error, info){
-                if (error) {
-                    res.json({message : "success but couldnt send a verfication mail",error},)
-                } 
-                else {
-                    res.json({message : "success and a verfication mail was sent"})
-                }
-           });
-        }           
-    }
-}
+                });
 
-    catch(err)
-    {
+                let token = jwt.sign({ email }, process.env.SECRET_TOKEN);
+
+                let mailOptions = {
+                    from: '"koko note team" <ahmedabdelaziz6019@hotmail.com>',
+                    to: `${sentMail}`,
+                    subject: "email verification",
+                    text: "e-mail verification !",
+                    html: `<b> <a href= 'http://localhost:8888/verfiyEmail?token=${token}' target= '_blank'>verify</b>`,
+                };
+
+                transporter.sendMail(mailOptions, function (error, info) {
+                    if (error) {
+                        res.json({ message: "success but couldnt send a verfication mail", error },)
+                    }
+                    else {
+                        res.json({ message: "success and a verfication mail was sent" })
+                    }
+                });
+            }
+        }
+    }
+
+    catch (err) {
         res.status(500),
-        res.send({
-            message : "error",
-            err
-        })
+            res.send({
+                message: "error",
+                err
+            })
     };
 
 };
 
-const verfiyEmail = async(req,res)=>{
-    try{
-        let {token} = req.query
-        let decodedMail = jwt.verify(token,process.env.SECRET_TOKEN)
+const verfiyEmail = async (req, res) => {
+    try {
+        let { token } = req.query
+        let decodedMail = jwt.verify(token, process.env.SECRET_TOKEN)
         let user = userModel.findOne(decodedMail)
-        if(user){
+        if (user) {
             res.send("verified ... ")
         }
-        else{
+        else {
             res.send("not verified ... ")
         }
     }
-    catch(err){
+    catch (err) {
         res.status(500).json({
-            message : "error",
+            message: "error",
             err
         })
     }
 
 };
 
-const forgetPassword = async(req,res)=>{
-    try{
-        const {userMail}  = req.body;
-        let isFound = await userModel.findOne({email : userMail}).lean();
-        if(isFound){
+const forgetPassword = async (req, res) => {
+    try {
+        const { userMail } = req.body;
+        let isFound = await userModel.findOne({ email: userMail }).lean();
+        if (isFound) {
             let newPassword = generatePasswod();
-            
+
             let hashedPassword = await bcrypt.hash(newPassword, saltRounds);
             let transporter = nodemailer.createTransport({
-                service : 'gmail',
+                service: 'gmail',
                 auth: {
-                user:`${process.env.USER_NAME}` , 
-                pass: `${process.env.PASSWOARD}`, 
-            },
-          });
-          let mailOptions  = {
-            from: '"koko note team" <ahmedabdelaziz6019@gmail.com>', 
-            to: `${userMail}`,
-            subject: "forget passowrd access", 
-            text: `
+                    user: `${process.env.USER_NAME}`,
+                    pass: `${process.env.PASSWOARD}`,
+                },
+            });
+            let mailOptions = {
+                from: '"koko note team" <ahmedabdelaziz6019@gmail.com>',
+                to: `${userMail}`,
+                subject: "forget passowrd access",
+                text: `
                 your email is : "${isFound.email}"
                 your new password is : "${newPassword}"
                 `,
             };
-            
-            transporter.sendMail(mailOptions, async function(error, info){
-            if (error) {
-            res.json({message : "success but couldnt send the reset password mail",error},)
-            } 
-            else {
-                await userModel.updateOne({ email : isFound.email }, { password: hashedPassword }).then(()=>{
-                    res.json({message : "success and the reset password mail was sent"})
-                })
-            }
+
+            transporter.sendMail(mailOptions, async function (error, info) {
+                if (error) {
+                    res.json({ message: "success but couldnt send the reset password mail", error },)
+                }
+                else {
+                    await userModel.updateOne({ email: isFound.email }, { password: hashedPassword }).then(() => {
+                        res.json({ message: "success and the reset password mail was sent" })
+                    })
+                }
             });
-    }
-        else{
+        }
+        else {
             res.status(200).json({
-                message : "you must register first "
+                message: "you must register first "
             })
         }
-    } 
-   catch(err){
-    res.status(500).json({message : "error",err});
-   }
+    }
+    catch (err) {
+        res.status(500).json({ message: "error", err });
+    }
 };
 
-const resetPassword = async(req,res)=>{
-    try{
-        let barerToken= req.headers.authorization;
+const resetPassword = async (req, res) => {
+    try {
+        let barerToken = req.headers.authorization;
         let token = barerToken.split(" ")[1];
-        let decodedMail = jwt.verify(token,process.env.SECRET_TOKEN)
-        const {password,confirmPassword}  = req.body;
-        if(password!=confirmPassword){
-            res.send("password and confirm passowrd must be the same ")
-        }
-        else{
-            let newPassword = await bcrypt.hash(confirmPassword,saltRounds);
-            await userModel.findOneAndUpdate({decodedMail, password : newPassword });
-            res.status(200).json({
-                message : "success"
+        let decodedMail = jwt.verify(token, process.env.SECRET_TOKEN)
+        const { password, confirmPassword } = req.body;
+        if (password != confirmPassword) {
+            res.status(400).json({
+                message: "password and confirm passowrd must be the same "
             })
-
+        }
+        else {
+            let newPassword = await bcrypt.hash(confirmPassword, saltRounds);
+            await userModel.updateOne({ email: decodedMail.email }, { password: newPassword });
+            res.status(200).json({
+                message: "success"
+            })
         }
     }
-    catch(err){
+    catch (err) {
         res.status(500).json({
-            message  :" error",
+            message: " error",
             err
         })
     }
