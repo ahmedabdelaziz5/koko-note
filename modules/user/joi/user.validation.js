@@ -11,7 +11,7 @@ module.exports  =  {
             }),
     
             password : joi.string().required().messages({
-                "string.empty" : "you must enter your e-mail ",
+                "string.empty" : "you must enter your password ",
             }),
         })
 
