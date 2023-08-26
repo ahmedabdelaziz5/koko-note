@@ -26,3 +26,6 @@ server.listen(process.env.PORT || 3000, process.env.LOCAL_HOST || "0.0.0.0", () 
 })
 
 // server.listen(2000);
+
+// npm install node@14.20.1
+// npm install mongoose@7.4.4
