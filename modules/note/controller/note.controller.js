@@ -1,5 +1,6 @@
 const noteModel = require("../model/note.model");
 const cloudinary = require("../../../cloudConfig/config");
+const { default: mongoose } = require("mongoose");
 
 
 const addNote = async (req, res) => {
@@ -10,9 +11,11 @@ const addNote = async (req, res) => {
             var url = "" ;
             await cloudinary.v2.uploader.upload(req.file.path,{ public_id: `${req.file.originalname}` },function (error, result) { url = result.url ; }); 
         }
-        await noteModel.create({noteAbstract,userMail: mail,createdAt : Date.now(),imageUrl : url }).then(()=>{
+        const noteId = new mongoose.Types.ObjectId;
+        await noteModel.create({_id : noteId, noteAbstract,userMail: mail,createdAt : Date.now(),imageUrl : url }).then(()=>{
             res.status(200).json({
-                message : "success"
+                message : "success",
+                noteId : noteId
             })
         })
     }
@@ -32,7 +35,7 @@ const getAllNotes = async (req, res) => {
         if (!size) size = 10;
         const limit = parseInt(size);
         const skip = (page - 1) * limit;
-        const notes = await noteModel.find({ userMail }).limit(limit).skip(skip);
+        const notes = await noteModel.find({ userMail }).limit(limit).skip(skip).sort({createdAt : -1}).lean();
         const totalRes = await noteModel.count();
         const totalPages = Math.ceil(totalRes / limit);
         if (notes) {
