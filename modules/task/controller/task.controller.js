@@ -26,6 +26,7 @@ const addTask = async (req, res) => {
 const markAsPinned = async (req, res) => {
     try {
         const { taskId } = req.body;
+        console.log(taskId); 
         let task = await taskModel.findOne({ _id: taskId });
         let mark;
         if (task.isPined) { task.isPined = false }
@@ -142,7 +143,7 @@ const deletAllTasks = async (req, res) => {
 const markAsDone = async (req, res) => {
     try {
         let { taskId } = req.body;
-        await taskModel.findOneAndUpdate({ _id: taskId }).then(async (docs) => {
+        await taskModel.findOneAndDelete({ _id: taskId },).then(async (docs) => {
             let tmp = new doneTaskModel({
                 title: docs.title,
                 content: docs.content,
