@@ -70,6 +70,47 @@
 |/editNote|PUT|allows you to update/edit any note
 
 
+# Task module :
+
+#### Task schema : 
+
+```JavaScript
+{
+    title : {type : String, required : true },
+    content : {type : String, required : true , default : "descreption"},
+    isPined : {type : Boolean, required : true , default : false },
+    userMail : {type : String, required : true },
+}
+
+```
+
+#### doneTask schema : 
+
+```JavaScript
+{
+    title : {type : String, required : true },
+    content : {type : String, required : true },
+    userMail : {type : String, required : true },
+}
+
+```
+
+#### Task endPoints : 
+
+|Endpoint|Method|Usage
+|-------:|-----:|-----
+|/addTask|POST|allows you to add task 
+|/markAsPinned|PUT|allows you to pin any task
+|/getAllTasks|GET|allows you to see all your tasks
+|/editTask|PUT|allows you to update/edit any task
+|/deleteTask|DELETE|allows you to delete any task
+|/deletAllTasks|DELETE|allows you to delete all your tasks ( flush all tasks )
+|/markAsDone|POST|allows you to mark task as done/completed
+|/getAlLDoneTasks|GET|allows you to see all your tasks that have completed
+|/deleteAllDoneTasks|DELETE|allows you to delete all completed/done tasks 
+|/deleteSingleDoneTask|DELETE|allows you to delete a completed/done task 
+
+
 
 #### note : all the services is full production using `onrender` cloud services
 
