@@ -13,9 +13,14 @@
 ![Static Badge](https://img.shields.io/badge/jsonwebtoken-9.0.1-white)
 ![Static Badge](https://img.shields.io/badge/mongoose-6.11.5-black)
 ![Static Badge](https://img.shields.io/badge/multer-1.4.5_lts.1-darkgreen)
-![Static Badge](https://img.shields.io/badge/node-19.4.0-darkgreen)
+![Static Badge](https://img.shields.io/badge/node-19.4.0-72W)
 ![Static Badge](https://img.shields.io/badge/nodemon-3.0.1-09c)
 ![Static Badge](https://img.shields.io/badge/node_cron-3.0.2-01F)
+![Static Badge](https://img.shields.io/badge/node_cron-3.0.2-01F)
+![Static Badge](https://img.shields.io/badge/nodemailer-6.9.4-09F)
+
+
+
 
 # Modules : 
 
