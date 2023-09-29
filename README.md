@@ -5,7 +5,7 @@
 #### I used these technologies :
 ![Static Badge](https://img.shields.io/badge/bcrypt-5.1.1-red)
 ![Static Badge](https://img.shields.io/badge/cloudinary-1.40.0-purple)
-![Static Badge](https://img.shields.io/badge/cloudinary_multer-1.0.2-rose)
+![Static Badge](https://img.shields.io/badge/cloudinary_multer-1.0.2-0E497D)
 ![Static Badge](https://img.shields.io/badge/dotenv-16.3.1-yellow)
 ![Static Badge](https://img.shields.io/badge/cors-2.8.5-0f3)
 ![Static Badge](https://img.shields.io/badge/express-4.18.2-blue)
