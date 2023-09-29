@@ -16,8 +16,8 @@
 ![Static Badge](https://img.shields.io/badge/node-19.4.0-72W)
 ![Static Badge](https://img.shields.io/badge/nodemon-3.0.1-09c)
 ![Static Badge](https://img.shields.io/badge/node_cron-3.0.2-01F)
-![Static Badge](https://img.shields.io/badge/node_cron-3.0.2-01F)
-![Static Badge](https://img.shields.io/badge/nodemailer-6.9.4-09F)
+![Static Badge](https://img.shields.io/badge/node_cron-3.0.2-09F)
+![Static Badge](https://img.shields.io/badge/nodemailer-6.9.4-pink)
 
 
 
