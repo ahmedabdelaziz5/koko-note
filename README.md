@@ -139,9 +139,9 @@
 
 #### - you can run the project using the following command : `npm start`
 
-#### - i used cloudinary free cloud service to store images ( you can find cloud config in `file : cloudConfig`
+#### - i used cloudinary free cloud service to store images ( you can find cloud config in `folder : cloudConfig`
 
-#### - there is a script using cron service is run regularly so that it deletes all itmes in the trash collection who exceded 1 month in trash collection ( you can find the script in `file : cron services`
+#### - there is a script using cron service is run regularly so that it deletes all itmes in the trash collection who exceded 1 month in trash collection ( you can find the script in `folder : cron services`
 
 #### - all get requests has a pagination you can send page ( default = 1 ) and limit default = 10 ) in the URL 
 
