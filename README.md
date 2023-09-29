@@ -137,11 +137,11 @@
 
 #### - all the services is full production using `onrender` cloud services
 
-#### you can run the project using the following command : `npm start`
+#### - you can run the project using the following command : `npm start`
 
-#### i used cloudinary free cloud service to store images ( you can find cloud config in `file : cloudConfig`
+#### - i used cloudinary free cloud service to store images ( you can find cloud config in `file : cloudConfig`
 
-#### there is a script using cron service is run regularly so that it deletes all itmes in the trash collection who exceded 1 month in trash ( you can find the script in `file : cron services`
+#### - there is a script using cron service is run regularly so that it deletes all itmes in the trash collection who exceded 1 month in trash collection ( you can find the script in `file : cron services`
 
-#### all get requests has a pagination you can send page ( default = 1 ) and limit default = 10 ) in the URL 
+#### - all get requests has a pagination you can send page ( default = 1 ) and limit default = 10 ) in the URL 
 
