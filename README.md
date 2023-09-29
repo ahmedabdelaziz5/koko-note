@@ -17,23 +17,17 @@
 ![Static Badge](https://img.shields.io/badge/nodemon-3.0.1-09c)
 ![Static Badge](https://img.shields.io/badge/node_cron-3.0.2-01F)
 
-
-
-#### The objective is to ensure accurate recording, computation, and production of sales reports, providing reliable insights into business performance. By achieving these goals, the project aims to enhance mentorint , recording , keep track of products , bussiness and inventory management processes
+# Modules : 
 
 # User module :
 
-#### user schema : 
+#### User schema : 
 
 ```JavaScript
 {
-    email  : { type : String, required : true } , 
-    bussinesName  : { type : String, required : true } , 
-    inventoryName  : { type : String, required : true  } , 
-    userName  : { type : String, required : true  } , 
-    password  : { type : String, required : true  } , 
-    bussinesIndustry : {type : String , required : true },
-    isVerified : {type : Boolean , default : false },
+    userName : {type : String,required : true},
+    email : {type : String,required : true},
+    password : {type : String,required : true},
 }
 
 ```
@@ -45,45 +39,30 @@
 |/signUp|POST|allows you t ocreate account 
 |/login|POST|allows you to sign in your account
 |/forgetPassword|POST|allows you to ask for a new password
-|/changePassword|PATCH|allows you to update/change your password
-|/editProfile|PATCH|allows you to edit/update youe prodile data
-|/verifyAccount|GET|allows you to send a verification mail after creating account
+|/resetPassword|PUT|allows you to update/change your password
 
 
-# Product module :
+# Note module :
 
-#### Product schema : 
+#### Note schema : 
 
 ```JavaScript
 {
-    userName : {type : String , required : true},
-    userId : {type : mongoose.Types.ObjectId , required : true },
-    inventoryName  : { type : String, required : true  } , 
-    productName : {type : String, required : true  },
-    productSerialNumber : {type : String, required : true  },
-    productQuantity : {type : Number, required : true  },
-    limit : {type : Number, required : true  },
-    productCategory : {type : String, required : true  },
-    countryOfProductOrigin : {type : String, required : true  },
-    productPrice : {type : Number, required : true  },
-    addedAt : {type : Date, required : true},
-    islimited : {type : Boolean , default : false }
+    noteAbstract : {type : String, reqired : true },
+    userMail : {type :String , ref : "user"},
+    imageUrl : {type : String, optional : true},
+    createdAt : {type : Date },
 }
 
 ```
 
-#### Product endPoints : 
+#### Note endPoints : 
 
 |Endpoint|Method|Usage
 |-------:|-----:|-----
-|/addProduct|POST|allows you to add your products
-|/deleteProduct/:productId|DELETE|allows you to delete any product
-|/updateProduct/:productId|PUT|allows you to update/edit any product
-|/getSpecificCategory/:categoryName|GET|allows you to get all products that belongs a specific category
-|/getLimitedItems|GET|allows you to get all the limited products which need to be refiled
-|/getAllProducts|GET|allows you to get all the products you have in your inventory system
-|/getSpecificProduct/:productId|GET|allows you to search for any product
-
+|/addNote|POST|allows you to add a note ( note can contain a photo )
+|/getAllNotes|DELETE|allows you to see all your notes 
+|/editNote|PUT|allows you to update/edit any note
 
 
 
