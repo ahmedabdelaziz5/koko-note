@@ -99,16 +99,17 @@
 
 |Endpoint|Method|Usage
 |-------:|-----:|-----
-|/addTask|POST|allows you to add task 
-|/markAsPinned|PUT|allows you to pin any task
 |/getAllTasks|GET|allows you to see all your tasks
+|/getAlLDoneTasks|GET|allows you to see all your tasks that have completed
+|/addTask|POST|allows you to add task 
+|/markAsDone|POST|allows you to mark task as done/completed
 |/editTask|PUT|allows you to update/edit any task
+|/markAsPinned|PUT|allows you to pin any task
 |/deleteTask|DELETE|allows you to delete any task
 |/deletAllTasks|DELETE|allows you to delete all your tasks ( flush all tasks )
-|/markAsDone|POST|allows you to mark task as done/completed
-|/getAlLDoneTasks|GET|allows you to see all your tasks that have completed
 |/deleteAllDoneTasks|DELETE|allows you to delete all completed/done tasks 
 |/deleteSingleDoneTask|DELETE|allows you to delete a completed/done task 
+
 
 
 
